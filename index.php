@@ -1,6 +1,6 @@
 <?php
 // -----------------------------------------------------
-//  Simple config reader (no external libraries needed)
+// Simple config reader (no external libraries needed)
 // -----------------------------------------------------
 $configFile = __DIR__ . '/config.cfg';
 $config = [];
@@ -25,24 +25,23 @@ if (file_exists($configFile)) {
 }
 
 // Default values if config is missing or broken
-$videoUrl     = $config['media']['video_url']     ?? '/static/hero.mp4';
-$fallbackImg  = $config['media']['fallback_image'] ?? '/static/poster.jpg';
+$videoUrl    = $config['media']['video_url']     ?? '/static/hero.mp4';
+$fallbackImg = $config['media']['fallback_image'] ?? '/static/poster.jpg';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Video Landing Page</title>
+  <title>Aare Labs – Shaping the Future of AI</title>
   <link rel="stylesheet" href="style.css?v=<?= filemtime('style.css') ?>">
 </head>
 <body>
-
   <div id="bg-video-container">
-    <video autoplay muted loop playsinline id="bg-video">
+    <video autoplay muted playsinline id="bg-video" preload="auto">
       <source src="<?= htmlspecialchars($videoUrl) ?>" type="video/mp4">
       <!-- Fallback image shown if video cannot play -->
-      <img id="bg-fallback" src="<?= htmlspecialchars($fallbackImg) ?>" alt="Background fallback">
+      <img id="bg-fallback" src="<?= htmlspecialchars($fallbackImg) ?>" alt="Background fallback image">
     </video>
   </div>
 
@@ -50,38 +49,37 @@ $fallbackImg  = $config['media']['fallback_image'] ?? '/static/poster.jpg';
 
   <main>
     <h1>Welcome to the Future</h1>
-    <p>Based in Oxford UK, we grow companies shaping the future of AI products and services.</p>
-    
-  <!-- Portfolio Section -->
-  <section class="portfolio-section">
-    <div class="portfolio-container">
-      <!-- h2 class="portfolio-title">Our Portfolio</h2 -->
-      <div class="portfolio-box">
+    <p>Based in Oxford, UK, we grow companies shaping the future of AI products and services.</p>
 
-       
-        <a href="https://inagentic.ai" target="_blank" rel="noopener noreferrer" class="btn" style="margin: 1.5rem;">
-         InAgentic Ltd
-        </a>    
-          
-          <p class="company-description">InAgentic.ai empowers companies to accelerate digital transformation by integrating cutting-edge Agentic AI solutions.</p>
-
-        <p></p>
-
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+      <div class="portfolio-container">
+        <h2 class="portfolio-title">Our Portfolio</h2>
+        <div class="portfolio-box">
+          <a href="https://inagentic.ai" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn">
+            InAgentic Ltd
+          </a>
+          <p class="company-description">
+            InAgentic.ai empowers companies to accelerate digital transformation by integrating cutting-edge Agentic AI solutions.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
-      
+    </section>
   </main>
 
   <footer>
-    © <?= date('Y') ?> • Aare Labs Ltd - Companies are wholly owned subsidiaries of Aare Labs Ltd.
+    © <?= date('Y') ?> • Aare Labs Ltd – Companies are wholly owned subsidiaries of Aare Labs Ltd.
   </footer>
 
-  <!-- Optional: hide fallback after video can play (better UX) -->
+  <!-- Video fallback handling + seamless loop -->
   <script>
     const video = document.getElementById('bg-video');
     const fallback = document.getElementById('bg-fallback');
 
+    // Hide fallback when video is ready
     video.addEventListener('canplay', () => {
       fallback.style.opacity = '0';
     });
@@ -90,8 +88,20 @@ $fallbackImg  = $config['media']['fallback_image'] ?? '/static/poster.jpg';
       fallback.style.opacity = '1';
     });
 
-    // Some mobile browsers need user interaction to autoplay → we use muted + playsinline
-  </script>
+    // Seamless loop – prevents jump/stutter at restart
+    video.addEventListener('timeupdate', function() {
+      // Restart ~0.2–0.4 seconds before actual end (adjust threshold if needed)
+      if (this.duration - this.currentTime < 0.3) {
+        this.currentTime = 0;
+        this.play().catch(() => {}); // silent catch for autoplay policies
+      }
+    });
 
+    // Optional: fallback restart on 'ended' (for browsers that don't fire timeupdate reliably)
+    video.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.play().catch(() => {});
+    });
+  </script>
 </body>
 </html>
