@@ -8,7 +8,7 @@ body, html {
     height: 100%;
     font-family: system-ui, -apple-system, sans-serif;
     color: white;
-    background: transparent;               /* ← important: no blue background */
+    background: transparent;
     overflow-x: hidden;
 }
 
@@ -18,14 +18,14 @@ body {
     flex-direction: column;
 }
 
-/* Full-screen background video + fallback */
+/* Background video container */
 #bg-video-container {
     position: fixed;
     inset: 0;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    z-index: -10;                          /* far behind everything */
+    z-index: -10;
 }
 
 #bg-video {
@@ -52,11 +52,11 @@ body {
     z-index: -9;
 }
 
-/* Overlay for text readability – behind content, above video */
+/* Overlay for readability */
 #overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 10, 31, 0.55);    /* subtle dark tint – adjust opacity if needed */
+    background: rgba(10, 10, 31, 0.55);
     z-index: -5;
     pointer-events: none;
 }
@@ -65,7 +65,7 @@ body {
 main {
     position: relative;
     z-index: 10;
-    flex: 1 0 auto;                        /* grow to fill space */
+    flex: 1 0 auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -92,6 +92,7 @@ p {
     text-shadow: 0 2px 12px rgba(0,0,0,0.6);
 }
 
+/* Button */
 .btn {
     display: inline-block;
     padding: 1rem 2.4rem;
@@ -103,6 +104,7 @@ p {
     text-decoration: none;
     transition: all 0.28s ease;
     box-shadow: 0 10px 30px rgba(99, 102, 241, 0.35);
+    margin: 1rem 0; /* vertical spacing when alone */
 }
 
 .btn:hover {
@@ -110,7 +112,45 @@ p {
     box-shadow: 0 16px 40px rgba(99, 102, 241, 0.5);
 }
 
-/* Footer – now relative so it scrolls normally */
+/* Portfolio section */
+.portfolio-section {
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.portfolio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.portfolio-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.portfolio-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 600px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.company-description {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Footer */
 footer {
     position: relative;
     width: 100%;
@@ -118,20 +158,23 @@ footer {
     font-size: 0.95rem;
     opacity: 0.7;
     padding: 2rem 1rem;
-    margin-top: auto;                      /* pushes to bottom when content is short */
+    margin-top: auto;
     background: transparent;
 }
 
-/* Responsive tweaks */
+/* Responsive */
 @media (max-width: 640px) {
-    h1 {
-        font-size: 3.4rem;
-    }
-    p {
-        font-size: 1.35rem;
-    }
+    h1 { font-size: 3.4rem; }
+    p  { font-size: 1.35rem; }
     .btn {
         padding: 0.9rem 2rem;
         font-size: 1.2rem;
+    }
+    .portfolio-section {
+        margin-top: 3rem;
+        padding: 0 1rem;
+    }
+    .portfolio-box {
+        padding: 1.5rem;
     }
 }
