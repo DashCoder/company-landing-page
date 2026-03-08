@@ -50,9 +50,25 @@ $fallbackImg  = $config['media']['fallback_image'] ?? 'https://images.unsplash.c
 
   <main>
     <h1>Welcome to the Future</h1>
-    <p>A simple, elegant landing page with background video.<br>Edit <code>config.cfg</code> to change video or fallback image.</p>
+    <p>Based in Oxford UK, we grow companies shaping the future of AI products and services.</p>
     
-    <a href="#" class="btn">Get Started</a>
+  <!-- Portfolio Section -->
+  <section class="portfolio-section">
+    <div class="portfolio-container">
+      <h2 class="portfolio-title">Our Portfolio</h2>
+      <div class="portfolio-box">
+        
+        <a href="https://inagentic.ai" target="_blank" rel="noopener noreferrer" class="company-link">
+          <div class="company-name">InAgentic Ltd</div>
+          <div class="company-description">InAgentic.ai empowers companies to accelerate digital transformation by integrating cutting-edge Agentic AI solutions.</div>
+        </a>
+
+        <p>Companies are wholly owned subsidiaries of Aare Labs Ltd.</p>
+
+      </div>
+    </div>
+  </section>
+      
   </main>
 
   <footer>
