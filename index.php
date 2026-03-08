@@ -25,8 +25,8 @@ if (file_exists($configFile)) {
 }
 
 // Default values if config is missing or broken
-$videoUrl     = $config['media']['video_url']     ?? 'https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-26070-large.mp4';
-$fallbackImg  = $config['media']['fallback_image'] ?? 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80';
+$videoUrl     = $config['media']['video_url']     ?? '/static/hero.mp4';
+$fallbackImg  = $config['media']['fallback_image'] ?? '/static/poster.jpg';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,10 +58,12 @@ $fallbackImg  = $config['media']['fallback_image'] ?? 'https://images.unsplash.c
       <h2 class="portfolio-title">Our Portfolio</h2>
       <div class="portfolio-box">
         
-        <a href="https://inagentic.ai" target="_blank" rel="noopener noreferrer" class="company-link">
-          <div class="company-name">InAgentic Ltd</div>
-          <div class="company-description">InAgentic.ai empowers companies to accelerate digital transformation by integrating cutting-edge Agentic AI solutions.</div>
-        </a>
+        <a href="https://inagentic.ai" target="_blank" rel="noopener noreferrer" class="btn">
+         InAgentic Ltd
+        </a>    
+          
+          <p class="company-description">InAgentic.ai empowers companies to accelerate digital transformation by integrating cutting-edge Agentic AI solutions.</p>
+
 
         <p>Companies are wholly owned subsidiaries of Aare Labs Ltd.</p>
 
