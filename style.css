@@ -1,27 +1,24 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Amend these existing rules */
 
 body, html {
     height: 100%;
     font-family: system-ui, -apple-system, sans-serif;
     color: white;
-    background-color: #0a0a1f;
+    background-color: transparent;          /* ← Key change: remove blue background */
     overflow-x: hidden;
 }
 
-/* Full-screen background video + fallback */
+/* Make sure video container covers entire viewport reliably */
 #bg-video-container {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;                               /* shorthand for top/right/bottom/left: 0 */
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
-    z-index: -2;
+    z-index: -10;                           /* lower than -2 to stay safely behind everything */
 }
 
+/* Video itself – ensure it fills properly */
 #bg-video {
     position: absolute;
     top: 50%;
@@ -32,27 +29,19 @@ body, html {
     height: auto;
     transform: translate(-50%, -50%);
     object-fit: cover;
+    z-index: -10;                           /* same low level as container */
 }
 
-#bg-fallback {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out;
-}
-
-/* Overlay to improve text readability */
+/* Overlay – keep it subtle and behind content */
 #overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: -1;
+    background: rgba(10, 10, 31, 0.55);     /* slightly darker blue tint matching your theme, adjust opacity */
+    z-index: -5;                            /* between video (-10) and content (10+) */
     pointer-events: none;
 }
 
+/* Main content – ensure it's above overlay/video */
 main {
     position: relative;
     z-index: 10;
@@ -63,53 +52,28 @@ main {
     align-items: center;
     text-align: center;
     padding: 2rem;
+    background: transparent;                /* ← ensure no accidental bg color */
 }
 
-h1 {
-    font-size: clamp(3.2rem, 9vw, 7.5rem);
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 4px 30px rgba(0,0,0,0.7);
-}
-
-p {
-    font-size: clamp(1.3rem, 4vw, 2rem);
-    max-width: 720px;
-    margin-bottom: 2.5rem;
-    opacity: 0.92;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-}
-
-.btn {
-    display: inline-block;
-    padding: 1rem 2.4rem;
-    font-size: 1.35rem;
-    font-weight: 600;
-    color: white;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    border-radius: 9999px;
-    text-decoration: none;
-    transition: all 0.28s ease;
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.35);
-}
-
-.btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(99, 102, 241, 0.5);
-}
-
+/* Footer – move it to relative positioning so it scrolls normally */
 footer {
-    position: absolute;
-    bottom: 1.5rem;
+    position: relative;                     /* ← change from absolute to avoid overlap issues */
+    margin-top: auto;                       /* push to bottom in flex container if needed */
     width: 100%;
     text-align: center;
     font-size: 0.95rem;
     opacity: 0.7;
+    padding: 1.5rem 0;
+    background: transparent;
 }
 
-/* Responsive tweaks */
-@media (max-width: 640px) {
-    h1 { font-size: 3.4rem; }
-    p  { font-size: 1.35rem; }
+/* If you have multiple sections or long content, add this to prevent gaps */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;                         /* grow to fill space */
 }
