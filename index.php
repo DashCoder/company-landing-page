@@ -55,11 +55,11 @@ $fallbackImg  = $config['media']['fallback_image'] ?? '/static/poster.jpg';
   <!-- Portfolio Section -->
   <section class="portfolio-section">
     <div class="portfolio-container">
-      <h2 class="portfolio-title">Our Portfolio</h2>
+      <!-- h2 class="portfolio-title">Our Portfolio</h2 -->
       <div class="portfolio-box">
 
        
-        <a href="https://inagentic.ai" target="_blank" rel="noopener noreferrer" class="btn" style="margin-left: 1.5rem;">
+        <a href="https://inagentic.ai" target="_blank" rel="noopener noreferrer" class="btn" style="margin: 1.5rem;">
          InAgentic Ltd
         </a>    
           
