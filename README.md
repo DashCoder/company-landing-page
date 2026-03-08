@@ -98,3 +98,15 @@ composer install --no-dev --optimize-autoloader
 
 ```
 
+
+# Common Issues Ensure SSH is running
+If ssh root@IP shows "Connection Refused"
+
+_make sure ssh is enabled_
+```
+systemctl status ssh
+systemctl start ssh    # if not running
+systemctl enable ssh
+
+```
+_Also check firewall in web console's network settings_
