@@ -72,7 +72,7 @@ $fallbackImg  = $config['media']['fallback_image'] ?? 'https://images.unsplash.c
   </main>
 
   <footer>
-    © <?= date('Y') ?> • Built with a looping video background
+    © <?= date('Y') ?> • Aare Labs Ltd
   </footer>
 
   <!-- Optional: hide fallback after video can play (better UX) -->
