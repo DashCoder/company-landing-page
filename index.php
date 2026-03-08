@@ -57,15 +57,15 @@ $fallbackImg  = $config['media']['fallback_image'] ?? '/static/poster.jpg';
     <div class="portfolio-container">
       <h2 class="portfolio-title">Our Portfolio</h2>
       <div class="portfolio-box">
-        
-        <a href="https://inagentic.ai" target="_blank" rel="noopener noreferrer" class="btn">
+
+       
+        <a href="https://inagentic.ai" target="_blank" rel="noopener noreferrer" class="btn" style="margin-left: 1.5rem;">
          InAgentic Ltd
         </a>    
           
           <p class="company-description">InAgentic.ai empowers companies to accelerate digital transformation by integrating cutting-edge Agentic AI solutions.</p>
 
-
-        <p>Companies are wholly owned subsidiaries of Aare Labs Ltd.</p>
+        <p></p>
 
       </div>
     </div>
@@ -74,7 +74,7 @@ $fallbackImg  = $config['media']['fallback_image'] ?? '/static/poster.jpg';
   </main>
 
   <footer>
-    © <?= date('Y') ?> • Aare Labs Ltd
+    © <?= date('Y') ?> • Aare Labs Ltd - Companies are wholly owned subsidiaries of Aare Labs Ltd.
   </footer>
 
   <!-- Optional: hide fallback after video can play (better UX) -->
